@@ -15,7 +15,7 @@ application:
 		*: App\*Module\Presenters\*Presenter
 
 database:
-    dsn:    "mysql:host=127.0.0.1;dbname=crawler"
+    dsn:    "mysql:host=127.0.0.1;dbname=crawler;charset=utf8mb4"
     user:   "root"
     debugger:	true
     explain:	true

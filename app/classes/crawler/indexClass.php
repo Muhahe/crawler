@@ -30,7 +30,7 @@ class indexClass {
     protected $type;
     protected $id;
     protected $state;
-
+    
     protected function extractKeywords() {
 
 	$toReplace = Array('/', '\\', '-', '_', '', "");

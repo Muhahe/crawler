@@ -2,28 +2,10 @@
 
 {block content}
 
-<a href ="{link Search}">Search</a>
-       
-
 
 
 <br>directories: {$directories}
 <br>files: {$files}
-<br>log: {$log}
+<br>log:<br>
+{$log|escape|nl2br|noescape}
 {/block}
-{*
-{block arrayList}
-
-    
-	{foreach $crawlerOutput as $item}
-        
-	{if is_array($item)}
-	    {include arrayList, $crawlerOutput => $item} 
-	{else}
-	    {$item}<br>
-	{/if}
-	{/foreach}
-   
-
-{/block}
-*}
