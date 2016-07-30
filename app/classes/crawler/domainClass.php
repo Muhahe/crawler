@@ -31,14 +31,16 @@ class domainClass {
     private $numOfFiles = 0;
     private $log = "";
     private $itemCounter = 0;
+    private $flagPath = "";
 
-    public function __construct($path, $location, crawlerModel $keywordModel) {
+    public function __construct($path, $location, crawlerModel $keywordModel, $flagPath = "") {
 
         $this->insertToLog("Indexing started");
         $this->model = $keywordModel;
         $this->path = $path;
         $this->location = $location;
-        $this->id = $this->model->insertDomain($path, $location);
+        $this->flagPath = $flagPath;
+        $this->id = $this->model->insertDomain($path, $location,$this->flagPath);
         $this->checkDeadLinks();
         $this->crawl($this->path);
         $this->insertToLog("Indexing finished");

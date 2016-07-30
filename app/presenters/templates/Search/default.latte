@@ -31,28 +31,28 @@
 {define paginatorBlock}
 {if $pages > 0}
     <nav class="text-center">
-	<ul class="pagination">
-	    {if $currentPage == 1}
-		<li class="page-item disabled"><a class="page-link"><span aria-hidden="true">&laquo;</span></a></li>
-		{else}
-		<li class="page-item"><a class="page-link" n:href="pagination! 1,$value"><span aria-hidden="true">&laquo;</span></a></li>
-		{/if}
-		{for $page = 1; $page< $pages+1; $page++}  
+        <ul class="pagination">
+            {if $currentPage == 1}
+                <li class="page-item disabled"><a class="page-link"><span aria-hidden="true">&laquo;</span></a></li>
+                {else}
+                <li class="page-item"><a class="page-link" n:href="pagination! 1,$value"><span aria-hidden="true">&laquo;</span></a></li>
+                {/if}
+                {for $page = 1; $page< $pages+1; $page++}  
 
-		{if $currentPage == $page}
-		    <li class="page-item active"><a class="page-link" n:href="pagination! $page,$value">{$page}</a></li> 
-		    {else}
-		    <li class="page-item"><a class="page-link" n:href="pagination! $page,$value">{$page}</a> </li>
-		    {/if}
+                {if $currentPage == $page}
+                    <li class="page-item active"><a class="page-link" n:href="pagination! $page,$value">{$page}</a></li> 
+                    {else}
+                    <li class="page-item"><a class="page-link" n:href="pagination! $page,$value">{$page}</a> </li>
+                    {/if}
 
-	    {/for}
-	    {if $currentPage == $pages}
-		<li class="page-item disabled"><a class="page-link"><span aria-hidden="true">&raquo;</span></a></li>
-		{else}
-		<li class="page-item"><a class="page-link" n:href="pagination! $pages,$value"><span aria-hidden="true">&raquo;</span></a></li>
-		{/if}
+            {/for}
+            {if $currentPage == $pages}
+                <li class="page-item disabled"><a class="page-link"><span aria-hidden="true">&raquo;</span></a></li>
+                {else}
+                <li class="page-item"><a class="page-link" n:href="pagination! $pages,$value"><span aria-hidden="true">&raquo;</span></a></li>
+                {/if}
 
-	</ul>
+        </ul>
     </nav>
 {/if}
 {/define}
@@ -60,16 +60,20 @@
 {define searchResultBlock}
 <div class="well wordWrap">
     <div class="searchResultHeader">
-	<img class="{$item->getType()}">
-	<span></span>
-	<span class="flag"></span>
-	<span><a href="{$item->getPath()}">{$item->getPath()}</a></span>
+        <img class="{$item->getType()}">
+        <span></span>
+        <span class="flag"></span>
+        <span><a href="{$item->getPath()}">{$item->getPath()}</a></span>
     </div>
     <div class="description">
-	{$item->getContent()|truncate:50}
+        {$item->getContent()|truncate:50}
     </div>
     <div class="searchResultFooter">
-	<span><a href="{$item->getPath()}">{$item->getPath()}</a></span>
+        {if $item->getType() <> "dir"}
+            <span><a href="{$item->getFolder()}">Open parent folder</a></span>
+        {else}
+
+        {/if}
     </div>
 </div>
 
@@ -78,7 +82,7 @@
 {define searchResultsBlock}
 <div class="results" >
     {foreach $items as $item}
-	{include searchResultBlock, item =>$item}
+        {include searchResultBlock, item =>$item}
     {/foreach}
 </div>
 {/define}
@@ -87,12 +91,12 @@
 {define searchFormBlock}
 <div class="center-block">
     {form searchForm}
-	<div class="form-group">
-	    {input Search class => "form-control typeahead"}
-	</div>
-	<div class="text-center">
-	    {input send class => "btn btn-default"}
-	</div>
+        <div class="form-group">
+            {input Search class => "form-control typeahead"}
+        </div>
+        <div class="text-center">
+            {input send class => "btn btn-default"}
+        </div>
     {/form}
     <hr>
 </div>

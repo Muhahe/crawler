@@ -33,7 +33,8 @@ class crawlerModel extends Nette\Object {
 	if ($recordExistsCount == 0) {
 	    $row = $this->database->table('domain')->insert(array(
 		'path' => $path,
-		'location' => $location
+		'location' => $location,
+                'flagPath' => $flagPath
 	    ));
 	    $id = $row->id;
 	    return $id;
