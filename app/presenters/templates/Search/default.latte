@@ -60,10 +60,11 @@
 {define searchResultBlock}
 <div class="well wordWrap">
     <div class="searchResultHeader">
-        <img class="{$item->getType()}">
+        <img class="{$item->getType()}" src="{$basePath}/images/files/{$item->getType()}.png">
+        
         <span></span>
-        <span class="flag"></span>
-        <span><a href="{$item->getPath()}">{$item->getPath()}</a></span>
+        <span class="flag">{$item->getLocation()} <img  src="{$basePath}{$item->getFlagPath()}"></span>
+        <span><a href="{$item->getPath()}">{$item->getTitle()}</a></span>
     </div>
     <div class="description">
         {$item->getContent()|truncate:50}

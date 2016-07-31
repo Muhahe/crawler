@@ -80,9 +80,7 @@ class searchModel extends Nette\Object {
                         } else {
                             $linkData = $link->ref('link', 'linkId');
                             $domainData = $linkData->ref('domain', 'domainId');
-                            Debugger::dump($domainData);
-                            //$linkData = $domainData[]
-                            $linkClass = new search\linkClass($linkData,$domainData->location,$domainData->flagPath);
+                            $linkClass = new search\linkClass($linkData, $domainData);
                             $linkClass->updateWeight($weight);
                             $this->resultData[$linkId] = $linkClass;
                         }

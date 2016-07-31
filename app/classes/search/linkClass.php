@@ -22,16 +22,18 @@ class linkClass {
     private $weight = 0;
     private $location;
     private $flagPath;
+    private $domainPath;
     
     
-    public function __construct(Nette\Database\Table\ActiveRow $linkData, $location = "", $flagPath = "") {
+    public function __construct(Nette\Database\Table\ActiveRow $linkData, $domainData) {
         $this->linkId = $linkData->linkId;
         $this->path = $linkData->path;
         $this->title = $linkData->title;
         $this->content = $linkData->linkContent;
         $this->type = $linkData->type;
-        $this->location = $location;
-        $this->flagPath = $flagPath;
+        $this->location = $domainData->location;
+        $this->flagPath = $domainData->flagPath;
+        $this->domainPath = $domainData->path;
         $this->setFolder();
     }
 
@@ -63,7 +65,7 @@ class linkClass {
     }
 
     public function getTitle() {
-        return $this->title;
+        return str_replace($this->domainPath,"",$this->path);
     }
 
     public function getContent() {
