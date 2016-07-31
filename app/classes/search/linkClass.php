@@ -20,13 +20,18 @@ class linkClass {
     private $content;
     private $type;
     private $weight = 0;
-
-    public function __construct(Nette\Database\Table\ActiveRow $linkData) {
+    private $location;
+    private $flagPath;
+    
+    
+    public function __construct(Nette\Database\Table\ActiveRow $linkData, $location = "", $flagPath = "") {
         $this->linkId = $linkData->linkId;
         $this->path = $linkData->path;
         $this->title = $linkData->title;
         $this->content = $linkData->linkContent;
         $this->type = $linkData->type;
+        $this->location = $location;
+        $this->flagPath = $flagPath;
         $this->setFolder();
     }
 
@@ -76,5 +81,13 @@ class linkClass {
     public function updateWeight($weight) {
         $this->weight += $weight;
     }
+    public function getLocation() {
+        return $this->location;
+    }
+
+    public function getFlagPath() {
+        return $this->flagPath;
+    }
+
 
 }

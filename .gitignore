@@ -47,8 +47,11 @@ Temporary Items
 .apdisk
 
 #Nette cache and log
-temp
+temp\**.*
 log
-temp\cache
+temp\cache\**
+temp\cache\**.*
 cache
-temp/
+temp/**
+temp/cache/**
+temp/cache/**
